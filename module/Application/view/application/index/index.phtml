@@ -1,0 +1,18 @@
+<?php
+$this->headTitle('Strona główna');
+
+$this->mainMenu()->setActiveItemId('home');
+
+$this->pageBreadcrumbs()->setItems([
+            'Strona główna'=>$this->url('home')
+            ]);
+?>
+
+<h2>Dane logowania</h2>
+
+<p>
+    <ul>
+        <li>Login: <em>admin@text.pl</em></li>
+        <li>Hasło: <em>admin1</em></li>
+    </ul>    
+</p>

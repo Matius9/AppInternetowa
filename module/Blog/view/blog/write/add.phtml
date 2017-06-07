@@ -1,0 +1,21 @@
+<?php
+$this->headTitle('Dodaj artykuł');
+
+$this->mainMenu()->setActiveItemId('article');
+
+$this->pageBreadcrumbs()->setItems([
+            'Strona główna'=>$this->url('home'),
+            'Artykuły'=>$this->url('blog'),
+            'Dodaj Artykuł'=>$this->url('blog', ['action'=>'add'])
+            ]);
+?>
+
+<h1>Dodaj artykuł</h1>
+<hr />
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url());
+echo $this->partial('blog/write/form', [
+    'form' => $form,
+    'submitLabel' => 'Dodaj',
+]);

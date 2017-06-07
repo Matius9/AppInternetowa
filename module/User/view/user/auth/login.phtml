@@ -1,0 +1,53 @@
+<?php
+$this->headTitle('Panel logowania');
+
+$this->mainMenu()->setActiveItemId('login');
+
+$form->get('email')->setAttributes([
+    'class'=>'form-control', 
+    'placeholder'=>'Adres email',
+    'required' => true,
+    'autofocus' => true
+    ])
+    ->setLabelAttributes([
+        'class' => 'sr-only'
+    ]);
+
+$form->get('password')->setAttributes([
+    'class'=>'form-control', 
+    'placeholder'=>'Hasło',
+    'required' => true,
+    ])
+    ->setLabelAttributes([
+        'class' => 'sr-only'
+    ]);
+?>
+
+<div class="row">
+    <div class="col-md-offset-4 col-md-3">
+        <form class="form-signin" method="post">
+            <h2 class="form-signin-heading">Panel logowania</h2>
+            <hr />
+            <?php if ($isLoginError): ?>
+            <div class="alert alert-warning" role="alert">
+                Błędny login lub hasło. 
+                
+            </div>
+            <?php endif; ?>
+            <?= $this->formLabel($form->get('email')); ?>
+            <?= $this->formElement($form->get('email')); ?>            
+            <?= $this->formLabel($form->get('password')); ?>
+            <?= $this->formElement($form->get('password')); ?>
+            <div class="checkbox">
+                <label>
+                    <?= $this->formElement($form->get('remember_me')); ?> Zapamiętaj
+                </label>
+            </div>
+            <p><a href="<?= $this->url('reset-password') ?>">Zapomniałeś hasła?</a></p>
+            <hr />
+            <?= $this->formElement($form->get('redirect_url')); ?>
+            <?= $this->formElement($form->get('csrf')) ?>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj</button>
+        </form>
+    </div>
+</div>

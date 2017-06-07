@@ -1,0 +1,19 @@
+<?php
+$this->headTitle($this->escapeHtml($this->post->getTitle()));
+
+$this->mainMenu()->setActiveItemId('blog');
+
+$this->pageBreadcrumbs()->setItems([
+            'Strona główna'=>$this->url('home'),
+            'Artykuły'=>$this->url('blog'),
+            $this->escapeHtml($this->post->getTitle())=>$this->url('blog', ['action'=>'detail', 'id'=>$post->getId()])
+            ]);
+?>
+
+<h2><?= $this->escapeHtml($this->post->getTitle()) ?></h2>
+<article>
+    <p><?= $this->escapeHtml($this->post->getText()) ?></p>
+    <div class="btn-group" role="group" aria-label="Post actions">
+        <a class="btn btn-primary" href="<?= $this->url('blog') ?>">Powrót</a>
+    </div>
+</article>

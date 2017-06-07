@@ -1,0 +1,25 @@
+<?php
+$this->headTitle($this->escapeHtml($this->post->getTitle()));
+
+$this->mainMenu()->setActiveItemId('blog');
+
+$this->pageBreadcrumbs()->setItems([
+            'Strona główna'=>$this->url('home'),
+            'Artykuły'=>$this->url('blog'),
+            'Usuwanie ' . $this->escapeHtml($this->post->getTitle())=>$this->url('blog', ['action'=>'detail', 'id'=>$post->getId()])
+            ]);
+?>
+
+<h1>Usuwanie artykułu</h1>
+
+<p>Czy jesteś pewien że chcesz usunąć ten artykuł?</p>
+
+<ul class="list-group">
+    <li class="list-group-item"><?= $this->escapeHtml($this->post->getTitle()) ?></li>
+</ul>
+
+<form action="<?php $this->url('blog/delete', [], true) ?>" method="post">
+    <input type="hidden" name="id" value="<?= $this->escapeHtmlAttr($this->post->getId()) ?>" />
+    <input class="btn btn-danger" type="submit" name="confirm" value="Usuń" />
+    <input class="btn btn-default" type="submit" name="confirm" value="Anuluj" />
+</form>

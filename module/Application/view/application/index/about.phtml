@@ -1,0 +1,17 @@
+<?php
+$this->headTitle('O stronie');
+
+$this->mainMenu()->setActiveItemId('about');
+
+$this->pageBreadcrumbs()->setItems([
+            'Strona główna'=>$this->url('home'),
+            'O stronie'=>$this->url('about'),
+            ]);
+?>
+
+<h1>O stronie</h1>
+
+<p>
+    Nazwa aplikacji: <?= $this->escapeHtml($appName) ?>
+</p>
+

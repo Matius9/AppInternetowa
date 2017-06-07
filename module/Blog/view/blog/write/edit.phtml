@@ -1,0 +1,21 @@
+<?php
+$this->headTitle('Edycja artykułu');
+
+$this->mainMenu()->setActiveItemId('article');
+
+$this->pageBreadcrumbs()->setItems([
+            'Strona główna'=>$this->url('home'),
+            'Artykuły'=>$this->url('blog'),
+            'Edycja artykułu'=>$this->url('blog')
+            ]);
+?>
+
+<h1>Edycja artykułu</h1>
+<hr />
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('blog/edit', [], true));
+echo $this->partial('blog/write/form', [
+    'form' => $form,
+    'submitLabel' => 'Zapisz',
+]);

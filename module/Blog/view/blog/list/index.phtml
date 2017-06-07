@@ -1,0 +1,54 @@
+<?php
+$this->headTitle('Artykuly');
+
+$this->mainMenu()->setActiveItemId('blog');
+
+$this->pageBreadcrumbs()->setItems([
+            'Strona główna'=>$this->url('home'),
+            'Artykuły'=>$this->url('blog')
+            ]);
+?>
+
+<?php if ($lo == true) { ?>  
+    <div class="btn-group" style="float: right; padding-top:23px;" role="group" aria-label="Post actions">
+        <a class="btn btn-primary" href="<?= $this->url('blog/add') ?>">Dodaj nowy artykuł</a>
+    </div>
+
+<?php } ?>
+<h1>Artykuły</h1>
+
+
+<hr />
+<div class="list-group">
+<?php foreach ($this->paginator as $post): ?>
+    <div class="list-group-item">
+        <h4 class="list-group-item-heading">
+            <a href="<?= $this->url('blog/detail', ['id' => $post->getId()]) ?>">
+                <?= $post->getTitle() ?>
+            </a>
+        </h4>
+        <p><?= $post->getText() ?></p> 
+        <div class="btn-group" role="group" aria-label="Post actions">
+            <div class="btn btn-xs btn-default">
+                <?= $post->getADate() ?>
+            </div>
+            
+            <?php if ($lo == true) { ?>        
+            <a class="btn btn-xs btn-default" href="<?= $this->url('blog/edit', ['id' => $post->getId()]) ?>">Edytuj</a>
+            <a class="btn btn-xs btn-danger" href="<?= $this->url('blog/delete', ['id' => $post->getId()]) ?>">Usuń</a>
+            <?php } ?>
+        </div>
+        
+  </div>    
+<?php endforeach ?>
+</div>
+<?= $this->paginationControl(
+    // The paginator object:
+    $this->paginator,
+    // The scrolling style:
+    'sliding',
+    // The partial to use to render the control:
+    'partial/paginator',
+    // The route to link to when a user clicks a control link:
+    ['route' => 'blog']
+) ?>

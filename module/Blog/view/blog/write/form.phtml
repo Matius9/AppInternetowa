@@ -1,0 +1,38 @@
+<?php
+$post = $this->form;
+$fieldset = $form->get('post');    
+    
+$atitle = $fieldset->get('title');
+$atitle->setAttribute('class', 'form-control');
+$atitle->setAttribute('placeholder', 'Tytuł artykułu');
+    
+$text = $fieldset->get('text');
+$text->setAttribute('class', 'form-control');
+$text->setAttribute('placeholder', 'Tekst');
+    
+$submit = $form->get('submit');
+$submit->setValue($this->submitLabel);
+$submit->setAttribute('class', 'btn btn-primary');
+    
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+
+<div class="form-group">
+    <h4>Tytuł</h4>    
+    <?= $this->formElement($atitle) ?>
+    <?= $this->formElementErrors()->render($atitle, ['class' => 'help-block']) ?>
+</div>
+<div class="form-group">
+    <h4>Treść artykułu</h4>
+    <?= $this->formElement($text) ?>
+    <?= $this->formElementErrors()->render($text, ['class' => 'help-block']) ?>
+</div>
+
+<?php
+echo $this->formSubmit($submit);
+echo $this->formHidden($fieldset->get('id'));
+echo $this->formHidden($fieldset->get('aDate'));
+echo $this->formHidden($fieldset->get('author'));
+echo $this->form()->closeTag();
